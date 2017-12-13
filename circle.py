@@ -8,12 +8,12 @@ class Circle:
         self.radius = radius;       self.surface = surface
         self.pos = pos;             self.thick = thick
         self.deg = 0
-        self.vector = [math.sin(self.rad), math.cos(self.rad)]
+        self.vector = [math.sin(self.radian), math.cos(self.radian)]
 
     def upd(self):
         self.deg += 1
         if self.deg == 360: self.deg = 0
-        self.vector = [math.sin(self.rad), math.cos(self.rad)]
+        self.vector = [math.sin(self.radian), math.cos(self.radian)]
 
     def drw(self):
         self._drwCoordinateSys()
@@ -34,7 +34,7 @@ class Circle:
         drwAxis(self.surface, start, end, self.pathThickness)
 
     @property
-    def rad(self):
+    def radian(self):
         return math.radians(self.deg)
     @property
     def edgepos(self):

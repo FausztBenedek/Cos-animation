@@ -1,14 +1,14 @@
 import pygame 
 import math 
 from function import *
-from tools import *
+from circle import Circle
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 #Initialized declarations
-function = Function(screen)
+circle = Circle(screen, WIDTH//9, pos = [WIDTH//6, HEIGHT//2])
 running = True
 while running:
     clock.tick(100)
@@ -16,9 +16,9 @@ while running:
         if event.type == pygame.QUIT: running = False
     
     # Update
-    function.upd()
+    circle.upd()
 
     # Draw
     screen.fill(BLACK)
-    function.drw()
+    circle.drw()
     pygame.display.flip()

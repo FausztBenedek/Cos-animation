@@ -26,20 +26,3 @@ def getRotatedUnitVector(vector, degree):
     return [math.sin(math.radians(actualDeg)), 
             math.cos(math.radians(actualDeg))
            ]
-
-def drwAxis(surface, start, end, thickness):
-    drw = pygame.draw.line
-    drw(surface, WHITE, start, end, thickness)
-
-    vector = [x-y for x, y in zip(end, start)]
-    vector = getNormalized(vector)
-    vector = getReversed(vector)
-    left =  getRotatedUnitVector(vector, -30)
-    right = getRotatedUnitVector(vector, 30) 
-    left = getProduct(left, 10)
-    right= getProduct(right,10)
-
-    left = [x + y for x, y in zip(left , end)]
-    right= [x + y for x, y in zip(right, end)]
-    drw(surface, WHITE, end, left, thickness)
-    drw(surface, WHITE, end, right, thickness)

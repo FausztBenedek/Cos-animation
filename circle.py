@@ -1,46 +1,37 @@
 import pygame
 import math
-from tools import * 
+from motionBase import MotionBase
+from tools import WHITE, YELLOW
 
-class Circle:
+class Circle(MotionBase):
 
-    def __init__(self, surface, radius, pos = [WIDTH//2, HEIGHT//2], thick = 10):
-        self.radius = radius;       self.surface = surface
-        self.pos = pos;             self.thick = thick
-        self.deg = 0
+    def __init__(self, surface, radius, center, ballWidth):
+        super(Circle, self).__init__(surface, radius, center, ballWidth)
         self.vector = [math.sin(self.radian), math.cos(self.radian)]
 
     def upd(self):
-        self.deg += 1
-        if self.deg == 360: self.deg = 0
         self.vector = [math.sin(self.radian), math.cos(self.radian)]
 
     def drw(self):
-        self._drwCoordinateSys()
-        self._drwUnitCircle()
-        self._drwMovingCircle()
+        self.__drwCoordinateSys()
+        self.__drwUnitCircle()
+        self.__drwBall()
 
-    def _drwUnitCircle(self):
-        pygame.draw.circle(self.surface, WHITE, self.pos, self.radius, self.pathThickness)
-    def _drwMovingCircle(self):
-        pygame.draw.circle(self.surface, YELLOW, self.edgepos, self.thick)
-    def _drwCoordinateSys(self):
-        start = list(self.pos);             end = list(self.pos)
+    def __drwUnitCircle(self):
+        pygame.draw.circle(self.surface, WHITE, self.center, self.radius, self.lineWidth)
+    def __drwBall(self):
+        pygame.draw.circle(self.surface, YELLOW, self.ballPos, self.ballWidth)
+    def __drwCoordinateSys(self):
+        start = list(self.center);             end = list(self.center)
         start[1] += int(self.radius * 1.2); end[1] -= int(self.radius *1.2)
-        drwAxis(self.surface, start, end, self.pathThickness)
+        MotionBase._drwAxis(self.surface, start, end, self.lineWidth)
 
-        start = list(self.pos);             end = list(self.pos)
+        start = list(self.center);             end = list(self.center)
         start[0] -= int(self.radius * 1.2); end[0] += int(self.radius *1.2)
-        drwAxis(self.surface, start, end, self.pathThickness)
+        MotionBase._drwAxis(self.surface, start, end, self.lineWidth)
 
     @property
-    def radian(self):
-        return math.radians(self.deg)
-    @property
-    def edgepos(self):
+    def ballPos(self):
         vector = map(lambda x: x * self.radius, self.vector)
-        return [int(x+y) for x,y in zip(self.pos, vector)]
-    @property
-    def pathThickness(self):
-        return self.thick//5
+        return [int(x+y) for x,y in zip(self.center, vector)]
 

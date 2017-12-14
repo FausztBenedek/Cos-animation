@@ -13,7 +13,7 @@ class Function(MotionBase):
         self.prePos = []
         self.howManyPrePos = WIDTH - self.center[0]
         for i in range(self.howManyPrePos):
-            self.prePos.append(self.center)
+            self.prePos.append(list(self.center))
         
   
     def upd(self):
@@ -21,15 +21,16 @@ class Function(MotionBase):
         for i in range(self.howManyPrePos):
             self.prePos[i][0] += 1
         self.prePos.pop(0)
-        self.prePos.append(self.center)
+        self.prePos.append(list(self.ballPos))
 
     def drw(self):
         self.__drwCoordinateSys()
         self.__drwBall()
+        self.__drwCosFunction()
    
-    def __drwCos(self):
+    def __drwCosFunction(self):
         for i in range(len(self.prePos)-1):
-            pygame.draw.line(self.surface, WHITE, self.prePos[i], self.prePos[i-1], self.lineWidth)
+            pygame.draw.line(self.surface, WHITE, self.prePos[i], self.prePos[i+1], self.lineWidth)
 
     def __drwCoordinateSys(self):
         start = list(self.center);           end = list(self.center)

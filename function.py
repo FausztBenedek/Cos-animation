@@ -8,18 +8,18 @@ class Function(MotionBase):
 
     def __init__(self, surface, radius, center, ballWidth):
         super(Function, self).__init__(surface, radius, center, ballWidth)
-        self.vector = [0, math.cos(self.radian)]
+        self.vector = [0, -math.sin(self.radian)]
+        
 
         self.prePos = []
         self.howManyPrePos = WIDTH - self.center[0]
         for i in range(self.howManyPrePos):
             self.prePos.append(list(self.center))
         
-  
     def upd(self):
-        self.vector = [0, math.cos(self.radian)]
+        self.vector = [0, -math.sin(self.radian)]
         for i in range(self.howManyPrePos):
-            self.prePos[i][0] += 1
+            self.prePos[i][0] += self.dDeg
         self.prePos.pop(0)
         self.prePos.append(list(self.ballPos))
 

@@ -15,10 +15,10 @@ circle = Circle(screen, rad, [WIDTH//6, HEIGHT//2], 10)
 function = Function(screen, rad, [WIDTH//3, HEIGHT//2], 10)
 running = True
 while running:
-    clock.tick(100)
+    clock.tick(70)
     for event in pygame.event.get():
         if event.type == pygame.QUIT: running = False
-    
+
     # Update
     MotionBase.upd()
     circle.upd()

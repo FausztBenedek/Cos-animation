@@ -7,10 +7,10 @@ class Circle(MotionBase):
 
     def __init__(self, surface, radius, center, ballWidth):
         super(Circle, self).__init__(surface, radius, center, ballWidth)
-        self.vector = [math.sin(self.radian), math.cos(self.radian)]
+        self.vector = [math.cos(self.radian), -math.sin(self.radian)]
 
     def upd(self):
-        self.vector = [math.sin(self.radian), math.cos(self.radian)]
+        self.vector = [math.cos(self.radian), -math.sin(self.radian)]
 
     def drw(self):
         self.__drwCoordinateSys()

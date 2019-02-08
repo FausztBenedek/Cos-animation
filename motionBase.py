@@ -32,4 +32,4 @@ class MotionBase(object):
     @property
     def ballWidth(self):        return self.__ballWidth
     @property
-    def lineWidth(self):        return self.ballWidth/5
+    def lineWidth(self):        return int(self.ballWidth/5)
